@@ -1,0 +1,28 @@
+{
+  "name": "github-scapper",
+  "description": "get info about any user/repo you want!",
+  "homepage": "https://github.com/tyizo/github-scapper/",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "node fetch",
+    "ts",
+    "typescript",
+    "js",
+    "javascript",
+    "github",
+    "scapper"
+  ],
+  "author": {
+    "name": "Tyizo",
+    "url": "https://github.com/tyizo/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/node-fetch": "^2.5.12",
+    "node-fetch": "^2.6.1"
+  }
+}
