@@ -5,9 +5,9 @@ get info about any user/repo you want!
 ## Installation :
 
 - By Npm :
-  `npm i github-scapper`
+  `npm i tyizo-github-scapper`
 - By Yarn :
-  `yarn add github-scapper`
+  `yarn add tyizo-github-scapper`
 
 ## Example:
 
