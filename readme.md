@@ -12,7 +12,7 @@ get info about any user/repo you want!
 ## Example:
 
 ```js
-const { Github } = require("github-scapper");
+const { Github } = require("tyizo-github-scapper");
 const github = new Github();
 // get user's info
 github.getUser("tyizo").then((user) => {
