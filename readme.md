@@ -1,6 +1,6 @@
 ## Github Scapper
 
-get info about any user/repo you want!
+get info about any user/repository you want!
 
 ## Installation :
 
@@ -24,6 +24,8 @@ github.getRepo("facebook", "react").then((repo) => {
 });
 ```
 
+- For more examples go to <a href="./examples">examples</a> file.
+
 ## Methods:
 
 - `getUser()`:
@@ -31,8 +33,8 @@ github.getRepo("facebook", "react").then((repo) => {
   Take one args and it's username, must be a string.
 
 - `getRepo()`:
-  For getting user's repo info any repo you want.
-  Take two args and it's username and repoName, must be a string too.
+  For getting user's repository info any repo you want.
+  Take two args and it's username and repository name, must be a string too.
 
 ## Responses:
 
@@ -55,10 +57,10 @@ interface User {
 }
 ```
 
-- For Repo:
+- For Repository:
 
 ```ts
-interface Repo {
+interface Repository {
   name: string;
   description: string;
   owner: string;
@@ -75,4 +77,4 @@ interface Repo {
 
 ## License:
 
-Made By Tyizo, this repo is under MIT license.
+Made By Tyizo, under MIT license.

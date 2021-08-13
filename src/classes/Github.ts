@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { User } from "../interfaces/User";
-import { Repo } from "../interfaces/Repo";
+import { Repository } from "../interfaces/Repository";
 
 export default class Github {
   /**
@@ -9,32 +9,29 @@ export default class Github {
    */
   public async getUser(username: string): Promise<User> {
     if (typeof username !== "string") {
-      throw new TypeError(
-        `[Github Scapper] username must be string: ${username}`
-      );
+      return this.reiseError(`Username must be string: ${username}`);
     }
     return this._getData(username);
   }
   /**
    * @param username Username to scrape, must be string
-   * @param repoName Repo name to scrape, must be string
+   * @param repository Repo name to scrape, must be string
    * @returns Info about username & repo
    */
-  public async getRepo(username: string, repoName: string): Promise<Repo> {
+  public async getRepo(
+    username: string,
+    repository: string
+  ): Promise<Repository> {
     if (typeof username !== "string") {
-      throw new TypeError(
-        `[Github Scapper] username must be string: ${username}`
-      );
+      return this.reiseError(`Username must be string: ${username}`);
     }
-    if (typeof repoName !== "string") {
-      throw new TypeError(
-        `[Github Scapper] repo name must be string: ${repoName}`
-      );
+    if (typeof repository !== "string") {
+      return this.reiseError(`Repo name must be string: ${username}`);
     }
 
-    return this._getUserRepoData(username, repoName);
+    return this._getUserRepoData(username, repository);
   }
-  
+
   // Private functions
   // getting username's info
   private async _getData(username: string): Promise<any> {
@@ -63,7 +60,7 @@ export default class Github {
         location,
         avatarURL,
         company,
-        twitterUsername,
+        twitterUsername: `@${twitterUsername}`,
         repos,
         website,
         createdAt,
@@ -72,23 +69,23 @@ export default class Github {
 
       return data;
     } catch (error) {
-      console.log(`[Github Scapper] Error: ${error}`);
+      return this.reiseError(error);
     }
   }
 
   // getting username's repo info
   private async _getUserRepoData(
     username: string,
-    repoName: string
+    repository: string
   ): Promise<any> {
     try {
       const data: any = {};
       const req = await fetch(
-        `https://api.github.com/repos/${username}/${repoName}`
+        `https://api.github.com/repos/${username}/${repository}`
       );
       if (req.status !== 200) return;
-      if (!repoName) {
-        return console.log("[Github Scapper] Please enter a repo name.");
+      if (!repository) {
+        return this.reiseError("Please enter repo name to scrape.");
       }
       let res = await req.json();
       const name = res.name;
@@ -117,7 +114,11 @@ export default class Github {
       });
       return data;
     } catch (error) {
-      console.log(`[Github Scapper] Error: ${error}`);
+      return this.reiseError(error);
     }
+  }
+  // for handling errors
+  private reiseError(errorMessage: string): never {
+    throw new Error(`[Github Scapper] ${errorMessage}`);
   }
 }
