@@ -34,10 +34,8 @@ export default class Github {
 
     return this._getUserRepoData(username, repoName);
   }
-  public async getRepos() {}
-
+  
   // Private functions
-
   // getting username's info
   private async _getData(username: string): Promise<any> {
     try {
